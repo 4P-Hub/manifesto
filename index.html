@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4P — Poder para o Povo Proletário</title>
+<meta name="description" content="Manifesto de um movimento pela união, organização e emancipação da classe trabalhadora.">
+<link rel="icon" href="img/image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0b0b0b;
+    --ink: #161414;
+    --red: #c4161c;
+    --red-dark: #8f0f13;
+    --paper: #f1ebdf;
+    --paper-dark: #e4dccb;
+    --white: #fafafa;
+    --muted: #5a524a;
+    --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+    --label: "Oswald", "Arial Narrow", sans-serif;
+    --body: "Source Serif 4", Georgia, serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  /* ---------- Barra superior ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .75rem clamp(1rem, 4vw, 3rem);
+    background: var(--black);
+    border-bottom: 3px solid var(--red);
+    color: var(--white);
+    font-family: var(--label);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-size: .8rem;
+  }
+  .topbar .mark { font-family: var(--display); font-size: 1.6rem; letter-spacing: .02em; text-decoration: none; }
+  .topbar .mark span { color: var(--red); }
+  .topbar a.cta {
+    text-decoration: none; padding: .45rem .9rem;
+    background: var(--red); color: var(--white); font-weight: 600;
+  }
+  .topbar a.cta:hover { background: var(--white); color: var(--black); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; overflow: hidden;
+    background: var(--black); color: var(--white);
+    display: grid; grid-template-columns: 1.1fr 1fr; align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding: clamp(2.5rem, 7vw, 6rem) clamp(1rem, 6vw, 6rem) 0;
+    min-height: calc(100vh - 56px);
+  }
+  .hero::before {
+    content: ""; position: absolute; left: -10%; right: -10%; bottom: 18%;
+    height: 90px; background: var(--red); transform: rotate(-6deg); opacity: .9; z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .hero-text { padding-bottom: clamp(2rem, 6vw, 6rem); }
+  .kicker {
+    display: inline-block; font-family: var(--label); text-transform: uppercase;
+    letter-spacing: .25em; font-size: .85rem; color: var(--red);
+    border: 2px solid var(--red); padding: .3rem .7rem; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    line-height: .88; letter-spacing: .005em;
+    font-size: clamp(3.2rem, 9vw, 8.5rem);
+  }
+  .hero h1 .big { display: block; font-size: 1.9em; color: var(--red); line-height: .85; }
+  .hero h1 .line { display: block; }
+  .hero p.lede {
+    margin-top: 1.75rem; max-width: 32rem;
+    font-size: clamp(1.1rem, 1.6vw, 1.3rem); color: #d9d4cc;
+  }
+  .hero .actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .75rem; }
+  .btn {
+    font-family: var(--label); text-transform: uppercase; letter-spacing: .15em;
+    font-weight: 700; font-size: .95rem; text-decoration: none;
+    padding: .9rem 1.4rem; border: 3px solid var(--white); display: inline-block;
+  }
+  .btn.primary { background: var(--white); color: var(--black); }
+  .btn.primary:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+  .btn.ghost:hover { background: var(--white); color: var(--black); }
+  .hero-img {
+    align-self: end;
+    -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+  }
+  .hero-img img { width: 100%; max-width: 560px; margin-left: auto; }
+
+  /* ---------- Faixa de palavras ---------- */
+  .ticker {
+    background: var(--red); color: var(--white); overflow: hidden;
+    border-top: 4px solid var(--black); border-bottom: 4px solid var(--black);
+  }
+  .ticker-track {
+    display: flex; gap: 2.5rem; width: max-content;
+    padding: .9rem 0; animation: scroll 38s linear infinite;
+    font-family: var(--display); text-transform: uppercase;
+    font-size: clamp(1.3rem, 2.4vw, 2rem); letter-spacing: .04em;
+    white-space: nowrap;
+  }
+  .ticker-track span::after { content: "★"; margin-left: 2.5rem; color: var(--black); }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
+  /* ---------- Manifesto (papel) ---------- */
+  .manifesto {
+    background:
+      radial-gradient(circle at 20% 10%, rgba(0,0,0,.035), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,.04), transparent 45%),
+      var(--paper);
+    padding: clamp(3rem, 8vw, 7rem) clamp(1rem, 5vw, 3rem);
+  }
+  .sheet { max-width: 54rem; margin: 0 auto; }
+  .sheet-head {
+    text-align: center; border-top: 6px solid var(--ink); border-bottom: 2px solid var(--ink);
+    padding: 1.25rem 0; margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .sheet-head .label {
+    font-family: var(--label); text-transform: uppercase; letter-spacing: .3em;
+    font-size: .8rem; color: var(--red);
+  }
+  .sheet-head h2 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1; margin: .35rem 0;
+  }
+  .sheet-head p { font-style: italic; color: var(--muted); }
+
+  .chapter {
+    display: grid; grid-template-columns: 7rem 1fr; gap: 0 2rem;
+    padding: clamp(2rem, 5vw, 3.5rem) 0;
+    border-top: 2px solid var(--ink);
+  }
+  .chapter:first-of-type { border-top: 0; padding-top: 0; }
+  .numeral {
+    font-family: var(--display); color: var(--red);
+    font-size: clamp(3.5rem, 7vw, 5.5rem); line-height: .9;
+  }
+  .chapter h3 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(1.8rem, 3.6vw, 2.6rem); line-height: 1.05; letter-spacing: .01em;
+    margin-bottom: 1.25rem;
+  }
+  .chapter p + p { margin-top: 1rem; }
+  .chapter p.strong {
+    font-family: var(--label); font-weight: 600; font-size: 1.2rem; line-height: 1.4;
+    text-transform: uppercase; letter-spacing: .02em;
+  }
+
+  .quote {
+    margin: 1.75rem 0 .5rem; padding: 1.25rem 1.5rem;
+    background: var(--ink); color: var(--white);
+    font-family: var(--display); text-transform: uppercase; font-weight: 400;
+    font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15;
+    border-left: 10px solid var(--red);
+  }
+
+  .stack { list-style: none; margin: 1.5rem 0; }
+  .stack li {
+    font-family: var(--label); text-transform: uppercase; font-weight: 600;
+    font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.3; letter-spacing: .02em;
+    padding: .75rem 0; border-bottom: 1px dashed rgba(0,0,0,.3);
+  }
+  .stack li em { font-style: normal; color: var(--red); }
+
+  .refuse { list-style: none; margin: 1.25rem 0; }
+  .refuse li { padding-left: 1.75rem; position: relative; }
+  .refuse li + li { margin-top: .75rem; }
+  .refuse li::before {
+    content: "✕"; position: absolute; left: 0; top: 0;
+    color: var(--red); font-family: var(--label); font-weight: 700;
+  }
+
+  /* ---------- Compromisso ---------- */
+  .pledge {
+    background: var(--red); color: var(--white);
+    padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 3rem);
+    position: relative; overflow: hidden;
+  }
+  .pledge .inner { max-width: 54rem; margin: 0 auto; position: relative; }
+  .pledge .numeral { color: var(--black); }
+  .pledge h3 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1; margin: .5rem 0 1.5rem;
+  }
+  .pledge p { max-width: 44rem; }
+  .pledge p + p { margin-top: 1rem; }
+  .while { margin: 2.5rem 0; }
+  .while p {
+    font-family: var(--display); text-transform: uppercase; font-weight: 400;
+    font-size: clamp(1.6rem, 4.2vw, 3rem); line-height: 1.05; max-width: none;
+    padding: .6rem 0; border-top: 3px solid var(--black);
+  }
+  .while p:last-child { border-bottom: 3px solid var(--black); }
+  .while p b { color: var(--black); font-weight: 400; }
+
+  /* ---------- Chamado final ---------- */
+  .call {
+    background: var(--black); color: var(--white); text-align: center;
+    padding: clamp(3.5rem, 9vw, 7rem) clamp(1rem, 5vw, 3rem) 2rem;
+  }
+  .call img {
+    width: min(240px, 60vw); margin: 0 auto 2rem;
+    -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 75%, transparent 100%);
+  }
+  .call h2 {
+    font-family: var(--display); font-weight: 400; text-transform: uppercase;
+    font-size: clamp(2.6rem, 8.5vw, 7rem); line-height: .92;
+  }
+  .call h2 span { color: var(--red); display: block; }
+  .signature { margin-top: 3.5rem; padding-top: 2rem; border-top: 2px solid #2a2a2a; }
+  .signature .logo { font-family: var(--display); font-size: clamp(4rem, 10vw, 6rem); line-height: 1; }
+  .signature .logo span { color: var(--red); }
+  .signature .name {
+    font-family: var(--label); text-transform: uppercase; letter-spacing: .3em;
+    font-weight: 600; font-size: .95rem; margin-top: .5rem;
+  }
+  .signature .motto { font-style: italic; color: #b8b2a9; margin-top: 1rem; }
+  footer {
+    background: var(--black); color: #6f6a63; text-align: center;
+    font-family: var(--label); text-transform: uppercase; letter-spacing: .2em;
+    font-size: .7rem; padding: 2rem 1rem 2.5rem;
+  }
+
+  /* ---------- Responsivo ---------- */
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; text-align: left; }
+    .hero-text { padding-bottom: 0; }
+    .hero-img img { margin: 0 auto; max-width: 420px; }
+    .hero::before { bottom: 10%; height: 60px; }
+  }
+  @media (max-width: 640px) {
+    .chapter { grid-template-columns: 1fr; }
+    .numeral { margin-bottom: .5rem; }
+    .topbar .tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="mark" href="#topo">4<span>P</span></a>
+  <span class="tag">Poder para o Povo Proletário</span>
+  <a class="cta" href="#manifesto">Ler o manifesto</a>
+</header>
+
+<section class="hero" id="topo">
+  <div class="hero-text">
+    <span class="kicker">Manifesto</span>
+    <h1>
+      <span class="big">4P</span>
+      <span class="line">Poder para</span>
+      <span class="line">o povo</span>
+      <span class="line">proletário</span>
+    </h1>
+    <p class="lede">Manifesto de um movimento pela união, organização e emancipação da classe trabalhadora.</p>
+    <div class="actions">
+      <a class="btn primary" href="#manifesto">Ler o manifesto</a>
+      <a class="btn ghost" href="#compromisso">Nosso compromisso</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="img/image.png" alt="Punho erguido branco com contorno vermelho rompendo arame farpado sobre fundo preto">
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Nossa classe</span><span>Nossa consciência</span><span>Nossa organização</span><span>Nosso poder</span>
+    <span>Nossa classe</span><span>Nossa consciência</span><span>Nossa organização</span><span>Nosso poder</span>
+    <span>Nossa classe</span><span>Nossa consciência</span><span>Nossa organização</span><span>Nosso poder</span>
+    <span>Nossa classe</span><span>Nossa consciência</span><span>Nossa organização</span><span>Nosso poder</span>
+  </div>
+</div>
+
+<main class="manifesto" id="manifesto">
+  <div class="sheet">
+    <div class="sheet-head">
+      <div class="label">Manifesto</div>
+      <h2>Poder para o Povo Proletário</h2>
+      <p>Pela união, organização e emancipação da classe trabalhadora.</p>
+    </div>
+
+    <article class="chapter">
+      <div class="numeral">I</div>
+      <div>
+        <h3>Nossa origem</h3>
+        <p>Somos trabalhadores e trabalhadoras. Somos aqueles que, diariamente, vendem sua força de trabalho para garantir a própria sobrevivência e a de suas famílias. Somos aqueles que constroem, produzem, transportam, ensinam, cuidam e mantêm a sociedade em funcionamento.</p>
+        <p>Entretanto, embora sejamos responsáveis por produzir a riqueza que sustenta o mundo, não somos aqueles que detêm o controle sobre ela.</p>
+        <p>Vivemos sob um sistema que transforma nosso tempo em mercadoria, nossos corpos em instrumentos de produção e nossas necessidades em oportunidades de lucro. Um sistema que depende do nosso trabalho, mas concentra os frutos desse trabalho nas mãos de uma classe que dele se apropria.</p>
+        <p class="strong">Não aceitamos essa condição como natural, inevitável ou eterna.</p>
+        <p>O 4P nasce da compreensão de que a exploração não é um destino: é uma relação histórica, construída socialmente e, portanto, passível de transformação.</p>
+      </div>
+    </article>
+
+    <article class="chapter">
+      <div class="numeral">II</div>
+      <div>
+        <h3>O que nos une</h3>
+        <p>O que nos une não é uma profissão, uma nacionalidade, uma empresa, uma categoria sindical ou uma filiação partidária.</p>
+        <p class="strong">O que nos une é a nossa condição de classe.</p>
+        <p>Somos trabalhadores e trabalhadoras que reconhecem na exploração capitalista uma realidade comum. Somos aqueles que compreendem que nossos interesses fundamentais não estão na competição entre nós, mas na organização coletiva diante daqueles que se apropriam do nosso trabalho.</p>
+        <p>Nossa referência teórica é o marxismo. É a partir da compreensão materialista da sociedade, da luta de classes e das contradições do capitalismo que buscamos interpretar a realidade e organizar nossa ação.</p>
+        <p>Não precisamos concordar em todos os assuntos para reconhecer que pertencemos à mesma classe. Precisamos compreender que, enquanto permanecermos divididos, nossa força continuará fragmentada.</p>
+        <blockquote class="quote">A emancipação dos trabalhadores será obra dos próprios trabalhadores.</blockquote>
+      </div>
+    </article>
+
+    <article class="chapter">
+      <div class="numeral">III</div>
+      <div>
+        <h3>Independência e organização</h3>
+        <p>O 4P é um movimento de trabalhadores, independente de partidos políticos e comprometido com a organização autônoma da classe trabalhadora.</p>
+        <p>Não existimos para servir a projetos eleitorais, interesses particulares ou estruturas partidárias. Nossa razão de existir é fortalecer a consciência, a solidariedade e a capacidade de organização dos trabalhadores.</p>
+        <p class="strong">Defendemos a organização de base, a participação coletiva, o debate político, a formação teórica e a ação organizada.</p>
+        <p>Acreditamos que a transformação social não pode ser terceirizada a representantes, lideranças ou instituições. Ela exige trabalhadores conscientes de sua posição histórica e capazes de construir coletivamente seus próprios caminhos.</p>
+        <p>Não buscamos substituir a participação popular por uma nova estrutura de poder distante do povo. Buscamos construir instrumentos de organização que estejam nas mãos daqueles que vivem do próprio trabalho.</p>
+      </div>
+    </article>
+
+    <article class="chapter">
+      <div class="numeral">IV</div>
+      <div>
+        <h3>Contra a exploração capitalista</h3>
+        <p>Nossa oposição é ao sistema de exploração que subordina a vida humana à acumulação de capital.</p>
+        <ul class="refuse">
+          <li>Rejeitamos a naturalização da precarização, da desigualdade, do desemprego, da insegurança e da submissão dos trabalhadores às necessidades do lucro.</li>
+          <li>Rejeitamos a ideia de que o sofrimento de milhões seja um preço inevitável para o enriquecimento de poucos.</li>
+        </ul>
+        <p class="strong">Nossos corpos não são propriedade do capital. Nosso tempo não existe exclusivamente para produzir lucro. Nossa dignidade não está à venda.</p>
+        <p>Nossa indignação diante da exploração deve transformar-se em consciência, solidariedade e organização coletiva.</p>
+        <p>Não queremos apenas melhores condições para suportar a exploração. Queremos construir as condições históricas e materiais para superá-la.</p>
+      </div>
+    </article>
+
+    <article class="chapter">
+      <div class="numeral">V</div>
+      <div>
+        <h3>Nossa unidade é nossa força</h3>
+        <p>A classe trabalhadora não é homogênea em suas experiências, mas compartilha contradições fundamentais dentro das relações capitalistas de produção.</p>
+        <p>Por isso, defendemos a união de todos os trabalhadores e trabalhadoras, respeitando suas diferenças, combatendo as divisões que enfraquecem nossa organização e reconhecendo que nenhuma parcela da classe poderá alcançar sua emancipação definitiva isoladamente.</p>
+        <ul class="stack">
+          <li>A <em>solidariedade</em> de classe deve superar a competição imposta pelo mercado de trabalho.</li>
+          <li>A <em>organização</em> deve superar o isolamento.</li>
+          <li>A <em>consciência</em> deve superar a alienação.</li>
+          <li>E a <em>ação coletiva</em> deve superar a impotência individual.</li>
+        </ul>
+        <p>Não somos concorrentes na luta pela sobrevivência. Somos parte de uma mesma classe diante de uma realidade que exige organização.</p>
+      </div>
+    </article>
+
+    <article class="chapter">
+      <div class="numeral">VI</div>
+      <div>
+        <h3>Pelo poder dos trabalhadores</h3>
+        <p>O 4P não pretende apenas denunciar as contradições do capitalismo. Pretende contribuir para a construção de uma classe trabalhadora organizada, consciente de seus interesses e protagonista de sua própria emancipação.</p>
+        <p>Defendemos uma sociedade na qual a produção esteja orientada às necessidades humanas, e não à acumulação privada de riqueza.</p>
+        <p>Uma sociedade na qual aqueles que produzem a riqueza tenham poder efetivo sobre as decisões relativas à produção e à vida social.</p>
+        <p>Uma sociedade livre da exploração do homem pelo homem, na qual a liberdade e a dignidade não sejam privilégios condicionados à posição econômica.</p>
+        <blockquote class="quote">Não queremos simplesmente ocupar o lugar daqueles que nos exploram. Queremos superar as relações sociais que tornam possível a exploração.</blockquote>
+      </div>
+    </article>
+  </div>
+</main>
+
+<section class="pledge" id="compromisso">
+  <div class="inner">
+    <div class="numeral">VII</div>
+    <h3>Nosso compromisso</h3>
+    <p><strong>Somos 4P: Poder para o Povo Proletário.</strong></p>
+    <p>Nosso compromisso é com a organização independente da classe trabalhadora, com a formação marxista, com a solidariedade entre trabalhadores e com a luta pela superação da exploração capitalista.</p>
+    <p>Não esperamos que a história se transforme por vontade própria. A transformação exige consciência, organização e ação coletiva.</p>
+    <div class="while">
+      <p>Enquanto houver exploração, <b>haverá resistência.</b></p>
+      <p>Enquanto houver divisão, <b>construiremos unidade.</b></p>
+      <p>Enquanto houver trabalhadores, <b>haverá a possibilidade de organização.</b></p>
+    </div>
+    <p>O poder que reivindicamos não é o poder de uma minoria sobre a maioria. É o poder coletivo daqueles que, por meio de seu trabalho, sustentam a sociedade.</p>
+  </div>
+</section>
+
+<section class="call">
+  <img src="img/image.png" alt="">
+  <h2>Trabalhadores de todo o mundo, <span>uni-vos!</span></h2>
+  <div class="signature">
+    <div class="logo">4<span>P</span></div>
+    <div class="name">Poder para o Povo Proletário</div>
+    <p class="motto">Nossa classe. Nossa consciência. Nossa organização. Nosso poder.</p>
+  </div>
+</section>
+
+<footer>4P — Poder para o Povo Proletário</footer>
+
+</body>
+</html>
